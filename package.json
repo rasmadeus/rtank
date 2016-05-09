@@ -1,0 +1,31 @@
+{
+  "name": "rtank",
+  "version": "0.0.1",
+  "description": "A classical 2D tank game",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "nodejs ./bin/www"
+  },
+  "dependencies": {
+    "express": "~4.0.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "hjs": "~0.0.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://rasmadeus@bitbucket.org/itcry/rtank.git"
+  },
+  "keywords": [
+    "rtunk",
+    "itcry",
+    "rasmadeus"
+  ],
+  "license": "MIT"
+}
