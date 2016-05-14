@@ -10,13 +10,15 @@
     "start": "nodejs ./bin/www"
   },
   "dependencies": {
-    "express": "~4.0.0",
-    "static-favicon": "~1.0.0",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.1",
-    "body-parser": "~1.0.0",
-    "debug": "~0.7.4",
-    "hjs": "~0.0.6"
+    "express": "*",
+    "static-favicon": "*",
+    "morgan": "*",
+    "cookie-parser": "*",
+    "body-parser": "*",
+    "debug": "*",
+    "bootstrap": "*",
+    "jquery": "*",
+    "express-nunjucks": "*"
   },
   "repository": {
     "type": "git",
