@@ -1,35 +1,35 @@
 {
-  "name": "rtank",
-  "version": "0.0.1",
-  "description": "A classical 2D tank game",
-  "engines": {
-    "node": "5.9.1"
-  },
-  "main": "app.js",
-  "scripts": {
-    "start": "nodejs ./bin/www"
-  },
-  "dependencies": {
-    "express": "*",
-    "serve-favicon": "*",
-    "morgan": "*",
-    "cookie-parser": "*",
-    "body-parser": "*",
-    "debug": "*",
-    "bootstrap": "*",
-    "jquery": "*",
-    "express-nunjucks": "*",
-    "passport": "*",
-    "passport-local": "*"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://rasmadeus@bitbucket.org/itcry/rtank.git"
-  },
-  "keywords": [
-    "rtunk",
-    "itcry",
-    "rasmadeus"
-  ],
-  "license": "MIT"
+    "name": "rtank",
+    "version": "0.0.1",
+    "description": "A classical 2D tank game",
+    "engines": {
+        "node": "5.9.1"
+    },
+    "main": "app.js",
+    "scripts": {
+        "start": "nodejs ./bin/www"
+    },
+    "dependencies": {
+        "express": "*",
+        "serve-favicon": "*",
+        "morgan": "*",
+        "cookie-parser": "*",
+        "body-parser": "*",
+        "debug": "*",
+        "bootstrap": "*",
+        "jquery": "*",
+        "express-nunjucks": "*",
+        "passport": "*",
+        "passport-local": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://rasmadeus@bitbucket.org/itcry/rtank.git"
+    },
+    "keywords": [
+        "rtunk",
+        "itcry",
+        "rasmadeus"
+    ],
+    "license": "MIT"
 }
