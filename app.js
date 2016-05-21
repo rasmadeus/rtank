@@ -30,7 +30,7 @@ app.use('/', routes);
 app.use('/users', users);
 
 app.use(function(req, res) {
-    res.render('base', {
+    res.render('article', {
         title: 'cтраница не найдена',
         article: {
             header: 'Такой страницы не существует',
