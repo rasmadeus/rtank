@@ -19,6 +19,7 @@
         "bootstrap": "*",
         "jquery": "*",
         "express-nunjucks": "*",
+        "express-session": "*",
         "passport": "*",
         "passport-local": "*"
     },
