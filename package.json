@@ -18,7 +18,9 @@
     "debug": "*",
     "bootstrap": "*",
     "jquery": "*",
-    "express-nunjucks": "*"
+    "express-nunjucks": "*",
+    "passport": "*",
+    "passport-local": "*"
   },
   "repository": {
     "type": "git",

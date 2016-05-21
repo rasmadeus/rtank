@@ -5,11 +5,35 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('express-nunjucks');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+     done(null, user);
+});
+
+
 var app = express();
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        if (username === "rasmadeus@gmail.com" && password === "1") {
+            return done(null, {user: {name: username, id: 12}});
+        }
+        else {
+            return done(null, false);
+        }
+    })
+);
+
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
@@ -22,12 +46,21 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+
+app.post('/users/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/'}));
 
 app.use(function(req, res) {
     res.render('article', {
