@@ -8,5 +8,18 @@ function error(req, res) {
     });
 }
 
-module.exports = error;
+function index(req, res) {
+    res.render('article', {
+        title: 'RTank - главаная страница',
+        article: {
+            header: 'Проект RTank',
+            content: 'Проект находится в разработке. Пока здесь пусто. P.S. Прошу не воспринимать как пшёл вон тсюда!'
+        }
+    });
+}
+
+module.exports = {
+    error: error,
+    index: index
+};
 

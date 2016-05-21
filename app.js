@@ -47,15 +47,14 @@ function setup_session(app) {
 }
 
 function setup_routing(app) {
-    var root = require('./apps/root/urls');
-    app.use('/', root());
+    var root = require('./apps/root/views');
+    app.get('/', root.index);
 
     var users = require('./apps/user/urls');
     var passport = require('./apps/user/passport')(app);
     app.use('/users', users(passport));
 
-    var error = require('./apps/root/error');
-    app.use(error);
+    app.use(root.error);
 }
 
 function make_application() {
