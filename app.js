@@ -72,4 +72,3 @@ function make_application() {
 }
 
 module.exports = make_application();
-
