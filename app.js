@@ -46,14 +46,21 @@ function setup_session(app) {
     app.use(session({ secret: 'this is a tankappliocationsuper game by author rasmadeus', resave: false, saveUninitialized: false }));
 }
 
+function make_passport(app) {
+    var passport = require('./apps/user/passport')();
+    app.use(passport.initialize());
+    app.use(passport.session());
+    return passport;
+}
+
 function setup_routing(app) {
-    var root = require('./apps/root/views');
-    app.get('/', root.index);
-
     var users = require('./apps/user/urls');
-    var passport = require('./apps/user/passport')(app);
-    app.use('/users', users(passport));
+    var root = require('./apps/root/views');
+    var passport = make_passport(app);
 
+    app.use(root.add_user_to_response);
+    app.get('/', root.index);
+    app.use('/users', users(passport));
     app.use(root.error);
 }
 
@@ -69,5 +76,6 @@ function make_application() {
 
     return app;
 }
+
 
 module.exports = make_application();

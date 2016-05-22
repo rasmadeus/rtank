@@ -10,7 +10,7 @@ function error(req, res) {
 
 function index(req, res) {
     res.render('article', {
-        title: 'RTank - главаная страница',
+        title: 'главная страница',
         article: {
             header: 'Проект RTank',
             content: 'Проект находится в разработке. Пока здесь пусто. P.S. Прошу не воспринимать как пшёл вон тсюда!'
@@ -18,8 +18,13 @@ function index(req, res) {
     });
 }
 
+function add_user_to_response(req, res, next) {
+    res.locals.user = req.user;
+    next();
+}
+
 module.exports = {
     error: error,
-    index: index
+    index: index,
+    add_user_to_response: add_user_to_response
 };
-

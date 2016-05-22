@@ -32,7 +32,13 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/users/login">Войти</a></li>
+                        <li>
+                            {% if user %}
+                                <a href="/users/logout">Выйти</a>
+                            {% else %}
+                                <a href="/users/login">Войти</a>
+                            {% endif %}
+                        </li>
                     </ul>
                 </div>
             </div>

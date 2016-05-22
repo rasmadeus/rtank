@@ -1,26 +1,26 @@
 function login(username, password, done) {
     if (username === "rasmadeus@gmail.com" && password === "1")
-        return done(null, {user: {name: username, id: 12}});
+        return done(null, {name: username, id: 12});
     else
         return done(null, false);
 };
 
-function make_passport(app) {
+function make_passport() {
     var passport = require('passport');
 
     passport.serializeUser(function(user, done) {
-        done(null, user);
+        done(null, user.id);
     });
 
-    passport.deserializeUser(function(user, done) {
-        done(null, user);
+    passport.deserializeUser(function(id, done) {
+        if (id === 12)
+            done(null, {name: 'rasmadeus@gmail.com', id: 12});
+        else
+            done(null, false);
     });
 
     var LocalStrategy = require('passport-local').Strategy;
     passport.use(new LocalStrategy(login));
-
-    app.use(passport.initialize());
-    app.use(passport.session());
 
     return passport;
 }

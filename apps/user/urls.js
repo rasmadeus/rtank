@@ -1,13 +1,11 @@
 function make_router(passport) {
     var router = require('express').Router();
+    var views = require('./views');
 
-    router.get('/login', function(req, res) {
-        res.render('login', { title: 'авторизация' });
-    });
+    router.get('/login', views.login);
+    router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/'}));
 
-    router.post('/login',
-        passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/'})
-    );
+    router.get('/logout', views.logout);
 
     return router;
 }
