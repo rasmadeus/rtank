@@ -1,25 +1,24 @@
 body {
     padding-top: 50px;
 }
-.starter-template {
+.article_content {
     padding: 40px 15px;
     text-align: center;
 }
 
-.form-signin {
+.form_login {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
 }
 
-.form-signin .form-signin-heading,
-.form-signin {
+.form_login .form_login_header, form_login {
     margin-bottom: 5px;
 }
-.form-signin .checkbox {
+.form_login .checkbox {
     font-weight: normal;
 }
-.form-signin .form-control {
+.form_login .form_control {
     position: relative;
     height: auto;
     -webkit-box-sizing: border-box;
@@ -29,17 +28,17 @@ body {
     font-size: 16px;
 }
 
-.form-signin .form-control:focus {
+.form_login .form_control:focus {
     z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form_login input[type="email"] {
     margin-bottom: 5px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form_login input[type="password"] {
     margin-bottom: 5px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
