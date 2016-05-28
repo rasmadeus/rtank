@@ -31,35 +31,29 @@ function _create_user(req, res, User) {
     });
 }
 
+function _show_error(req, res, er) {
+    req.flash('error', er);
+    signup(req, res);
+}
+
 function _try_create_user(req, res, User) {
-    if (_check_password(req.body.password)) {
+    if (_check_password(req.body.password))
         _create_user(req, res, User);
-    }
-    else {
-        req.flash('error', 'The password length must be minimum 8 symbols.');
-        signup(req, res);
-    }
+    else
+        _show_error(req, res, 'The password length must be minimum 8 symbols.');
 }
 
 function register_user(req, res) {
     var User = require('./models').User;
     User.findOne({'email':  req.body.email}, function(er, user) {
-        if (er) {
-            req.flash('error', er);
-            signup(req, res);
-        }
-        else if (!req.body.license) {
-            req.flash('error', 'You have to to agree with license.');
-            signup(req, res);
-        }
-        else if (user) {
-            req.flash('error', 'User "' + req.body.email + '" already exist.');
-            signup(req, res);
-        }
+        if (er)
+            _show_error(req, res, er);
+        else if (!req.body.license)
+            _show_error(req, res, 'You have to to agree with license.');
+        else if (user)
+            _show_error(req, res, 'User "' + req.body.email + '" already exist.');
         else
-        {
             _try_create_user(req, res, User);
-        }
     });
 }
 
