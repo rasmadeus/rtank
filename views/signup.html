@@ -9,19 +9,17 @@
     <div class="col-md-4 user_form_container">
         <form class="form-horizontal" method="post">
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="email">Email:</label>
-                <div class="col-sm-9">
+                <div class="col-md-12">
                     <input class="form-control-static" id="email" name="email" type="email" placeholder="Email">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="password">Password:</label>
-                <div class="col-sm-9">
+                <div class="col-md-12">
                     <input class="form-control-static" id="password" name="password" type="password" placeholder="Password">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
+                <div class="col-md-12">
                     <div class="checkbox">
                         <label>
                             <input name="license" type="checkbox">I agreed with license
@@ -30,10 +28,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
+                <div class="col-md-12">
                     <button class="btn btn-default" type="submit">SignUp</button>
                 </div>
             </div>
+            {% if messages.error %}
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        {{ messages.error }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </form>
     </div>
 </div>
