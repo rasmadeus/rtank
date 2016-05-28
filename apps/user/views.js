@@ -7,7 +7,12 @@ function logout(req, res) {
     res.redirect('/');
 }
 
+function signup(req, res) {
+    res.render('signup', {title: 'регистрация'});
+}
+
 module.exports = {
     login: login,
-    logout: logout
+    logout: logout,
+    signup: signup
 };

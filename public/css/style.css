@@ -1,45 +1,30 @@
 body {
     padding-top: 50px;
 }
-.article_content {
-    padding: 40px 15px;
+
+.bb{
+    border: 1px solid black;
+}
+
+.user_form_container, .user_form_header {
+    margin: 0 auto;
+    float: none;
+}
+
+.user_form_header {
     text-align: center;
 }
 
-.form_login {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+.user_form_container button, input[type="email"], input[type="password"]{
+    width: 100%;
 }
 
-.form_login .form_login_header, form_login {
-    margin-bottom: 5px;
-}
-.form_login .checkbox {
-    font-weight: normal;
-}
-.form_login .form_control {
-    position: relative;
-    height: auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 16px;
+
+.user_form_group {
+    text-align: right;
 }
 
-.form_login .form_control:focus {
-    z-index: 2;
-}
-
-.form_login input[type="email"] {
-    margin-bottom: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form_login input[type="password"] {
-    margin-bottom: 5px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+.article_content {
+    padding: 40px 15px;
+    text-align: center;
 }

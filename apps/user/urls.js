@@ -7,6 +7,8 @@ function make_router(passport) {
 
     router.get('/logout', views.logout);
 
+    router.get('/signup', views.signup);
+
     return router;
 }
 

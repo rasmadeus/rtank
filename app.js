@@ -64,6 +64,11 @@ function setup_routing(app) {
     app.use(root.error);
 }
 
+function connect_to_db() {
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://rtank:rtankrtank@ds025232.mlab.com:25232/rtank');
+}
+
 function make_application() {
     var express = require('express');
 
@@ -73,6 +78,7 @@ function make_application() {
     setup_static_paths(app, express);
     setup_session(app);
     setup_routing(app);
+    connect_to_db();
 
     return app;
 }

@@ -21,7 +21,9 @@
         "express-nunjucks": "*",
         "express-session": "*",
         "passport": "*",
-        "passport-local": "*"
+        "passport-local": "*",
+        "mongoose": "*",
+        "bcrypt-nodejs": "*"
     },
     "repository": {
         "type": "git",
