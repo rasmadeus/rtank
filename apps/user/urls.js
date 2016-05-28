@@ -3,7 +3,7 @@ function make_router(passport) {
     var views = require('./views');
 
     router.get('/login', views.login);
-    router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/'}));
+    router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/', failureFlash : true}));
 
     router.get('/logout', views.logout);
 
