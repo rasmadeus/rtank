@@ -1,3 +1,8 @@
+function connect_to_db() {
+    var mongoose = require('mongoose');
+    mongoose.connect('mongodb://rtank:rtankrtank@ds025232.mlab.com:25232/rtank');
+}
+
 function setup_logger(app) {
     var logger = require('morgan');
     app.use(logger('dev'));
@@ -46,6 +51,12 @@ function setup_session(app) {
     app.use(session({ secret: 'this is a tankappliocationsuper game by author rasmadeus', resave: false, saveUninitialized: false }));
 }
 
+function setup_flash(app) {
+    var flash = require('express-flash');
+    app.use(flash);
+}
+
+
 function make_passport(app) {
     var passport = require('./apps/user/passport')();
     app.use(passport.initialize());
@@ -64,12 +75,9 @@ function setup_routing(app) {
     app.use(root.error);
 }
 
-function connect_to_db() {
-    var mongoose = require('mongoose');
-    mongoose.connect('mongodb://rtank:rtankrtank@ds025232.mlab.com:25232/rtank');
-}
-
 function make_application() {
+    connect_to_db();
+
     var express = require('express');
 
     var app = express();
@@ -77,8 +85,8 @@ function make_application() {
     setup_view(app);
     setup_static_paths(app, express);
     setup_session(app);
+    setup_flash(app);
     setup_routing(app);
-    connect_to_db();
 
     return app;
 }

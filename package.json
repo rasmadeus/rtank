@@ -23,7 +23,8 @@
         "passport": "*",
         "passport-local": "*",
         "mongoose": "*",
-        "bcrypt-nodejs": "*"
+        "bcrypt-nodejs": "*",
+        "express-flash": "*"
     },
     "repository": {
         "type": "git",
