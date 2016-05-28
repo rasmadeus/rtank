@@ -11,7 +11,12 @@ function signup(req, res) {
     res.render('signup', {title: 'registration'});
 }
 
-function create_user(req, res, User) {
+function _check_password(password) {
+    var min_password_length = 7;
+    return password.length > min_password_length;
+}
+
+function _create_user(req, res, User) {
     var user = new User();
     user.email = req.body.email;
     user.password = req.body.password;
@@ -24,6 +29,16 @@ function create_user(req, res, User) {
             res.redirect('/');
         }
     });
+}
+
+function _try_create_user(req, res, User) {
+    if (_check_password(req.body.password)) {
+        _create_user(req, res, User);
+    }
+    else {
+        req.flash('error', 'The password length must be minimum 8 symbols.');
+        signup(req, res);
+    }
 }
 
 function register_user(req, res) {
@@ -39,7 +54,7 @@ function register_user(req, res) {
         }
         else
         {
-            create_user(req, res, User);
+            _try_create_user(req, res, User);
         }
     });
 }

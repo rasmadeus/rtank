@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Model = mongoose.Schema;
 
 var User = new Model({
-    email: {type: String},
-    password: {type: String},
+    email: {type: String, requied: true},
+    password: {type: String, required: true},
     registration_date_time: {type: Date, default: Date.now()},
     group: {type: String, enum: ['Unverified', 'Admin', 'User'], default: 'Unverified'}
 });

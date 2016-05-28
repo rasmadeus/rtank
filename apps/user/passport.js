@@ -1,4 +1,4 @@
-function login(username, password, done) {
+function _login(username, password, done) {
     if (username === "rasmadeus@gmail.com" && password === "1")
         return done(null, {name: username, id: 12});
     else
@@ -20,7 +20,7 @@ function make_passport() {
     });
 
     var LocalStrategy = require('passport-local').Strategy;
-    passport.use(new LocalStrategy(login));
+    passport.use(new LocalStrategy(_login));
 
     return passport;
 }
