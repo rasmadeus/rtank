@@ -48,6 +48,10 @@ function register_user(req, res) {
             req.flash('error', er);
             signup(req, res);
         }
+        else if (!req.body.license) {
+            req.flash('error', 'You have to to agree with license.');
+            signup(req, res);
+        }
         else if (user) {
             req.flash('error', 'User "' + req.body.email + '" already exist.');
             signup(req, res);
