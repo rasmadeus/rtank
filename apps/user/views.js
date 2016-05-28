@@ -1,5 +1,5 @@
 function login(req, res) {
-    res.render('login', { title: 'авторизация' });
+    res.render('login', { title: 'authentication' });
 }
 
 function logout(req, res) {
@@ -8,7 +8,7 @@ function logout(req, res) {
 }
 
 function signup(req, res) {
-    res.render('signup', {title: 'регистрация'});
+    res.render('signup', {title: 'registration'});
 }
 
 module.exports = {

@@ -1,19 +1,19 @@
 function error(req, res) {
     res.render('article', {
-        title: 'cтраница не найдена',
+        title: 'page not found',
         article: {
-            header: 'Такой страницы не существует',
-            content: 'Возможно страница была перемещена или удалена. Проверьте правильность введённого url адреса. Если ничего не помогает, попробуйте начать поиск на главной странице.'
+            header: 'Page not found',
+            content: 'Wha happened? The page not found. Maybe it was removed. Check url address and try to go to the page again.'
         }
     });
 }
 
 function index(req, res) {
     res.render('article', {
-        title: 'главная страница',
+        title: 'main page',
         article: {
-            header: 'Проект RTank',
-            content: 'Проект находится в разработке. Пока здесь пусто. P.S. Прошу не воспринимать как пшёл вон тсюда!'
+            header: 'RTank project',
+            content: 'The project is developing! Come to see us some later!'
         }
     });
 }
