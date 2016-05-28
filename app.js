@@ -53,7 +53,7 @@ function setup_session(app) {
 
 function setup_flash(app) {
     var flash = require('express-flash');
-    app.use(flash);
+    app.use(flash());
 }
 
 

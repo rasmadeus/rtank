@@ -1,12 +1,19 @@
-function make_user_model() {
-    var mongoose = require('mongoose');
-    var schema = new mongoose.Schema({
-        email: {type: String},
-        password: {type: String}
-    });
-    return mongoose.model('User', schema);
-}
+var mongoose = require('mongoose');
+var Model = mongoose.Schema;
+
+var User = new Model({
+    email: {type: String},
+    password: {type: String},
+    registration_date_time: {type: Date, default: Date.now()},
+    group: {type: String, enum: ['Unverified', 'Admin', 'User'], default: 'Unverified'}
+});
+
+var UnverifiedUserCode = new Model({
+    code: {type: String},
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+});
 
 module.exports = {
-    user: make_user_model()
+    User: mongoose.model('User', User),
+    UnverifiedUserCode: mongoose.model('UnverifiedUserCode', UnverifiedUserCode)
 };

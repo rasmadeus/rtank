@@ -11,8 +11,14 @@ function signup(req, res) {
     res.render('signup', {title: 'registration'});
 }
 
+function register_user(req, res) {
+    req.flash('error', 'User already exist!');
+    signup(req, res);
+}
+
 module.exports = {
     login: login,
     logout: logout,
-    signup: signup
+    signup: signup,
+    register_user: register_user
 };
