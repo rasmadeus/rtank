@@ -17,12 +17,6 @@ User.methods.isValid = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-var UnverifiedUserCode = new Model({
-    code: {type: String},
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-});
-
 module.exports = {
-    User: mongoose.model('User', User),
-    UnverifiedUserCode: mongoose.model('UnverifiedUserCode', UnverifiedUserCode)
+    User: mongoose.model('User', User)
 };
