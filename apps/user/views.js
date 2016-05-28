@@ -11,7 +11,6 @@ function signup(req, res) {
     res.render('signup', {title: 'registration'});
 }
 
-<<<<<<< HEAD
 function create_user(req, res, User) {
     var user = new User();
     user.email = req.body.email;
