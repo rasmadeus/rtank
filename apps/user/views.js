@@ -16,6 +16,10 @@ function _check_password(password) {
     return password.length > min_password_length;
 }
 
+function _check_email(email) {
+    return email.length > 0;
+}
+
 function _create_user(req, res, User) {
     var user = new User();
     user.email = req.body.email;
@@ -42,10 +46,12 @@ function _show_login_error(req, er, done) {
 }
 
 function _try_create_user(req, res, User) {
-    if (_check_password(req.body.password))
-        _create_user(req, res, User);
-    else
+    if (!_check_password(req.body.password))
         _show_signup_error(req, res, 'The password length must be minimum 8 symbols.');
+    else if (!_check_email(req.body.email))
+        _show_signup_error(req, res, 'Your email is invalid.');
+    else
+        _create_user(req, res, User);
 }
 
 function register_user(req, res) {
