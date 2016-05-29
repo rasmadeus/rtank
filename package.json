@@ -25,7 +25,7 @@
         "mongoose": "*",
         "bcrypt": "*",
         "express-flash": "*",
-        "canvas": "*"
+        "node-canvas": "*"
     },
     "repository": {
         "type": "git",
