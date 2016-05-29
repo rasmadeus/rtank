@@ -26,18 +26,7 @@ module.exports = function(params) {
         ctx.strokeStyle = params.color;
         ctx.font = params.fontSize+'px sans';
 
-        for (var i = 0; i < 2; i++) {
-            ctx.moveTo(Math.floor(0.08 * params.canvasWidth), Math.random() * params.canvasHeight);
-            ctx.bezierCurveTo(
-                Math.floor(0.32 * params.canvasWidth),
-                Math.random() * params.canvasHeight,
-                Math.floor(1.07 * params.canvasHeight),
-                Math.random() * params.canvasHeight,
-                Math.floor(0.92 * params.canvasWidth),
-                Math.random() * params.canvasHeight
-            );
-            ctx.stroke();
-        }
+
 
         var text = params.text || ('' + Math.random()).substr(3, params.codeLength);
 
@@ -48,7 +37,7 @@ module.exports = function(params) {
                 Math.random() * 0.4,
                 Math.random() * 0.5 + 1,
                 Math.floor(0.375 * params.fontSize) * i + Math.floor(0.25*params.fontSize),
-                Math.floor(1.25*params.fontSize)
+                Math.floor(1.25 * params.fontSize)
             );
             ctx.fillText(text.charAt(i), 0, 0);
         }

@@ -71,8 +71,8 @@ function setup_captcha(app) {
         color : '#000000',
         background: '#ffffff',
         lineWidth : 2,
-        fontSize : 60,
-        codeLength : 6
+        fontSize : 100,
+        codeLength : 4
     };
     app.use(captcha(params));
 }
