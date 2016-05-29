@@ -45,27 +45,29 @@ function _show_login_error(req, er, done) {
     done(null, false);
 }
 
-function _try_create_user(req, res, User) {
-    if (!_check_password(req.body.password))
-        _show_signup_error(req, res, 'The password length must be minimum 8 symbols.');
-    else if (!_check_email(req.body.email))
-        _show_signup_error(req, res, 'Your email is invalid.');
-    else
-        _create_user(req, res, User);
-}
-
-function register_user(req, res) {
+function _try_create_user(req, res) {
     var User = require('./models').User;
     User.findOne({'email':  req.body.email}, function(er, user) {
         if (er)
             _show_signup_error(req, res, er);
-        else if (!req.body.license)
-            _show_signup_error(req, res, 'You have to agree with license.');
         else if (user)
             _show_signup_error(req, res, 'User "' + req.body.email + '" already exist.');
         else
-            _try_create_user(req, res, User);
+            _create_user(req, res, User);
     });
+}
+
+function register_user(req, res) {
+    if (!req.body.license)
+        _show_signup_error(req, res, 'You have to agree with license.');
+    else if (req.body.captcha !== req.session.captcha)
+        _show_signup_error(req, res, 'You have to enter valid digits from the captcha.');
+    else if (!_check_password(req.body.password))
+        _show_signup_error(req, res, 'The password length must be minimum 8 symbols.');
+    else if (!_check_email(req.body.email))
+        _show_signup_error(req, res, 'Your email is invalid.');
+    else
+        _try_create_user(req, res);
 }
 
 function try_login(req, email, password, done) {

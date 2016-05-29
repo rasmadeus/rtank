@@ -64,10 +64,24 @@ function make_passport(app) {
     return passport;
 }
 
+function setup_captcha(app) {
+    var captcha = require('./apps/user/captcha');
+    var params = {
+        url: '/captcha.jpg',
+        color : '#000000',
+        background: '#ffffff',
+        lineWidth : 2,
+        fontSize : 60,
+        codeLength : 6
+    };
+    app.use(captcha(params));
+}
+
 function setup_routing(app) {
     var users = require('./apps/user/urls');
     var root = require('./apps/root/views');
     var passport = make_passport(app);
+
 
     app.use(root.add_user_to_response);
     app.get('/', root.index);
@@ -85,6 +99,7 @@ function make_application() {
     setup_view(app);
     setup_static_paths(app, express);
     setup_session(app);
+    setup_captcha(app);
     setup_flash(app);
     setup_routing(app);
 

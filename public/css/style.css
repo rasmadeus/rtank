@@ -15,10 +15,9 @@ body {
     text-align: center;
 }
 
-.user_form_container button, input[type="email"], input[type="password"]{
+.user_form_container button, input[type="email"], input[type="password"], input[type="text"]{
     width: 100%;
 }
-
 
 .user_form_group {
     text-align: right;
@@ -27,4 +26,12 @@ body {
 .article_content {
     padding: 40px 15px;
     text-align: center;
+}
+
+.captcha_container {
+    text-align: center;
+}
+
+.captcha {
+    height: 80px;
 }

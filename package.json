@@ -24,7 +24,8 @@
         "passport-local": "*",
         "mongoose": "*",
         "bcrypt": "*",
-        "express-flash": "*"
+        "express-flash": "*",
+        "canvas": "*"
     },
     "repository": {
         "type": "git",
