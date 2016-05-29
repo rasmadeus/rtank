@@ -30,7 +30,7 @@ function _create_user(req, res, User) {
             signup(req, res);
         }
         else {
-            res.redirect('/');
+            res.redirect('/users/login');
         }
     });
 }
