@@ -25,6 +25,9 @@
         "mongoose": "*",
         "bcrypt": "*",
         "express-flash": "*",
+        "canvas": "https://github.com/gabrielfalcao/node-canvas-heroku"
+    },
+    "devDependencies": {
         "canvas": "*"
     },
     "repository": {
