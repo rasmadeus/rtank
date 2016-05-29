@@ -80,10 +80,15 @@ function try_login(req, email, password, done) {
     });
  };
 
+function license(req, res) {
+    res.render('license', { title: 'license agreement' });
+}
+
 module.exports = {
     login: login,
     logout: logout,
     signup: signup,
     register_user: register_user,
-    try_login: try_login
+    try_login: try_login,
+    license: license
 };

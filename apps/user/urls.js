@@ -10,6 +10,8 @@ function make_router(passport) {
     router.get('/signup', views.signup);
     router.post('/signup', views.register_user);
 
+    router.get('/license', views.license);
+
     return router;
 }
 
