@@ -11,7 +11,7 @@ body {
     float: none;
 }
 
-.user_form_header {
+.user_form_header, .centered_text {
     text-align: center;
 }
 

@@ -86,11 +86,16 @@ function license(req, res) {
     res.render('license', { title: 'license agreement' });
 }
 
+function repair(req, res) {
+    res.render('repair', { title: 'password repair'});
+}
+
 module.exports = {
     login: login,
     logout: logout,
     signup: signup,
     register_user: register_user,
     try_login: try_login,
-    license: license
+    license: license,
+    repair: repair
 };

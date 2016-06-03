@@ -12,6 +12,8 @@ function make_router(passport) {
 
     router.get('/license', views.license);
 
+    router.get('/repair', views.repair);
+
     return router;
 }
 
