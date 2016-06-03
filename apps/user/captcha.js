@@ -36,7 +36,7 @@ module.exports = function(params) {
                 Math.random() * 0.4,
                 Math.random() * 0.4,
                 Math.random() * 0.5 + 1,
-                Math.floor(0.375 * params.fontSize) * i + Math.floor(0.25*params.fontSize),
+                Math.floor(0.5 * params.fontSize) * i + Math.floor(0.25*params.fontSize),
                 Math.floor(1.25 * params.fontSize)
             );
             ctx.fillText(text.charAt(i), 0, 0);
