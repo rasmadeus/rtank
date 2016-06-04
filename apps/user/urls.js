@@ -1,15 +1,16 @@
 function make_router(passport) {
     var router = require('express').Router();
-    var views = require('./views');
+    var login = require('./login');
     var repair = require('./repair');
+    var signup = require('./signup');
 
-    router.get('/login', views.login);
+    router.get('/login', login.login);
     router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/', failureFlash : true}));
 
-    router.get('/logout', views.logout);
+    router.get('/logout', login.logout);
 
-    router.get('/signup', views.signup);
-    router.post('/signup', views.register_user);
+    router.get('/signup', signup.signup);
+    router.post('/signup', signup.register_user);
 
     router.get('/repair', repair.repair);
     router.post('/repair', repair.let_user_change_password);
