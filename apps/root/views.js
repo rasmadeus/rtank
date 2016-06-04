@@ -3,7 +3,7 @@ function error(req, res) {
         title: 'page not found',
         article: {
             header: 'Page not found',
-            content: 'Wha happened? The page not found. Maybe it was removed. Check url address and try to go to the page again.'
+            content: 'What happened? The page not found. Maybe it was removed. Check url address and try to go to the page again.'
         }
     });
 }
@@ -23,8 +23,32 @@ function add_user_to_response(req, res, next) {
     next();
 }
 
+function develop_error_handler(er, req, res, next) {
+    res.status(er.status || 500);
+    res.render('article', {
+        title: 'application error happened',
+        article: {
+            header: 'Error',
+            content: er.message
+        }
+    });
+}
+
+function production_error_handler(er, req, res, next) {
+    res.status(er.status || 500);
+    res.render('article', {
+        title: 'application error happened',
+        article: {
+            header: 'Error',
+            content: 'Error happened. Status - ' + er.status
+        }
+    });
+}
+
 module.exports = {
     error: error,
     index: index,
-    add_user_to_response: add_user_to_response
+    add_user_to_response: add_user_to_response,
+    develop_error_handler: develop_error_handler,
+    production_error_handler: production_error_handler
 };

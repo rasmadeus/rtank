@@ -89,6 +89,16 @@ function setup_routing(app) {
     app.use(root.error);
 }
 
+function catch_errors(app) {
+    var root = require('./apps/root/views');
+
+    if (app.get('env') === 'development')
+        app.use(root.develop_error_handler);
+
+    app.use(root.production_error_handler);
+}
+
+
 function make_application() {
     connect_to_db();
 
@@ -102,6 +112,7 @@ function make_application() {
     setup_captcha(app);
     setup_flash(app);
     setup_routing(app);
+    catch_errors(app);
 
     return app;
 }
