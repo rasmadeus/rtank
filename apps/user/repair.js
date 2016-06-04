@@ -27,18 +27,19 @@ function _send_code(req, res, email, code) {
     };
 
     transporter.sendMail(mailOptions, function(er, info){
-    if(er){
-        _show_repair_error(req, res, er);
-    }else{
-        res.render('article', {
-            title: 'password repair',
-            article: {
-                header: 'Password repair',
-                content: 'A letter was sent to ' + email +'. Read this letter and do actions which are described in one!'
-            }
-        });
-    };
-});
+        if(er) {
+            _show_repair_error(req, res, er);
+        }
+        else {
+            res.render('article', {
+                title: 'password repair',
+                article: {
+                    header: 'Password repair',
+                    content: 'A letter was sent to ' + email +'. Read this letter and do actions which are described in one!'
+                }
+            });
+        };
+    });
 }
 
 function _let_user_change_password(req, res, user) {
