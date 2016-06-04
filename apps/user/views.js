@@ -87,6 +87,5 @@ module.exports = {
     logout: logout,
     signup: signup,
     register_user: register_user,
-    try_login: try_login,
-    license: license
+    try_login: try_login
 };
