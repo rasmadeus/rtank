@@ -86,14 +86,14 @@ function _code(req, res, user) {
 
 function code(req, res) {
     var User = require('./models').User;
-    User.findOne({'email':  req.params.email}, function(er, user) {
+    User.findOne({'email':  req.query.email}, function(er, user) {
         if (er)
             _show_repair_error(req, res, 'Try reset password again.');
         else if (user) {
             _code(req, res, user);
         }
         else
-            _show_repair_error(req, res, 'User with email ' + req.params.email + ' not found!');
+            _show_repair_error(req, res, 'User with email ' + req.query.email + ' not found!');
     });
 }
 
