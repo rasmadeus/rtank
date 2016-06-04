@@ -17,7 +17,7 @@ function _send_code(req, res, email, code) {
         }
     });
 
-    var text = '<h1>Hello!</h1> You have sent a request for password recovery.<br /> In order to set a new password, please <a href="https://rtank.herokuapp.com/users/code?email=' + email + '&code=' + code + '">go to here</a>.<br /> Please disregard this letter if it is hit by mistake to you.';
+    var text = '<h1>Hello!</h1> You have sent a request for password recovery.<br /> In order to set a new password, please <a href="http://localhost:5000/users/code?email=' + email + '&code=' + code + '">go to here</a>.<br /> Please disregard this letter if it is hit by mistake to you.';
 
     var mailOptions = {
         from: 'rtankcry@gmail.com',
@@ -45,14 +45,30 @@ function _send_code(req, res, email, code) {
 function _let_user_change_password(req, res, user) {
     var UserConfirm =  require('./models').UserConfirm;
     var code = require("randomstring").generate();
-    var userConfirm = new UserConfirm();
-    userConfirm.user = user;
-    userConfirm.code = code;
-    userConfirm.save(function (er){
+
+    UserConfirm.findOne({'user': user}, function(er, userConfirm){
         if (er)
             _show_repair_error(req, res, er);
-        else
-            _send_code(req, res, user.email, code);
+        else if (userConfirm) {
+            userConfirm.code = code;
+            userConfirm.save(function (er){
+                if (er)
+                    _show_repair_error(req, res, er);
+                else
+                    _send_code(req, res, user.email, code);
+                });
+        }
+        else {
+            var userConfirm = new UserConfirm();
+            userConfirm.user = user;
+            userConfirm.code = code;
+            userConfirm.save(function (er){
+            if (er)
+                _show_repair_error(req, res, er);
+            else
+                _send_code(req, res, user.email, code);
+            });
+        }
     });
 }
 
@@ -74,7 +90,7 @@ function _code(req, res, user) {
         if (er)
             _show_repair_error(req, res, er);
         else if (userConfirm) {
-            if (userConfirm.isValid(req.params.code))
+            if (userConfirm.isValid(req.query.code))
                 res.redirect('/');
             else
                 _show_repair_error(req, res, 'Code is invalid!');
