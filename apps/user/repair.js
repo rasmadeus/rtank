@@ -17,7 +17,7 @@ function _send_code(req, res, email, code) {
         }
     });
 
-    var text = '<h1>Hello!</h1> You have sent a request for password recovery.<br /> In order to set a new password, please <a href="https://rtank.herokuapp.com/users/password_repair?email=' + email + '?code=' + code + '">go to here</a>.<br /> Please disregard this letter if it is hit by mistake to you.';
+    var text = '<h1>Hello!</h1> You have sent a request for password recovery.<br /> In order to set a new password, please <a href="https://rtank.herokuapp.com/users/code?email=' + email + '?code=' + code + '">go to here</a>.<br /> Please disregard this letter if it is hit by mistake to you.';
 
     var mailOptions = {
         from: 'rtankcry@gmail.com',
@@ -49,12 +49,10 @@ function _let_user_change_password(req, res, user) {
     userConfirm.user = user;
     userConfirm.code = code;
     userConfirm.save(function (er){
-        if (er) {
+        if (er)
             _show_repair_error(req, res, er);
-        }
-        else {
+        else
             _send_code(req, res, user.email, code);
-        }
     });
 }
 
@@ -70,12 +68,37 @@ function let_user_change_password(req, res) {
     });
 }
 
-function password_repair(req, res) {
-    res.redirect('/');
+function _code(req, res, user) {
+    var UserConfirm = require('./models').UserConfirm;
+    UserConfirm.findOne({'user': user}, function(er, userConfirm){
+        if (er)
+            _show_repair_error(req, res, er);
+        else if (userConfirm) {
+            if (userConfirm.isValid(req.params.code))
+                res.redirect('/');
+            else
+                _show_repair_error(req, res, 'Code is invalid!');
+        }
+        else
+            _show_repair_error(req, res, 'Your code is invalid!');
+    });
+}
+
+function code(req, res) {
+    var User = require('./models').User;
+    User.findOne({'email':  req.params.email}, function(er, user) {
+        if (er)
+            _show_repair_error(req, res, 'Try reset password again.');
+        else if (user) {
+            _code(req, res, user);
+        }
+        else
+            _show_repair_error(req, res, 'User with email ' + req.params.email + ' not found!');
+    });
 }
 
 module.exports = {
     repair: repair,
     let_user_change_password: let_user_change_password,
-    password_repair: password_repair
+    code: code
 };
