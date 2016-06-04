@@ -11,8 +11,6 @@ function make_router(passport) {
     router.get('/signup', views.signup);
     router.post('/signup', views.register_user);
 
-    router.get('/license', views.license);
-
     router.get('/repair', repair.repair);
     router.post('/repair', repair.let_user_change_password);
     router.get('/code', repair.code);
