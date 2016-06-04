@@ -1,6 +1,6 @@
 function make_passport() {
     var passport = require('passport');
-    var login = require('./views').try_login;
+    var login = require('./login').try_login;
 
     passport.serializeUser(function(user, done) {
         done(null, user.id);
