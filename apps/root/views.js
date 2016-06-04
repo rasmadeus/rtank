@@ -23,32 +23,13 @@ function add_user_to_response(req, res, next) {
     next();
 }
 
-function develop_error_handler(er, req, res, next) {
-    res.status(er.status || 500);
-    res.render('article', {
-        title: 'application error happened',
-        article: {
-            header: 'Error',
-            content: er.message
-        }
-    });
-}
-
-function production_error_handler(er, req, res, next) {
-    res.status(er.status || 500);
-    res.render('article', {
-        title: 'application error happened',
-        article: {
-            header: 'Error',
-            content: 'Error happened. Status - ' + er.status
-        }
-    });
+function license(req, res) {
+    res.render('license', { title: 'license agreement' });
 }
 
 module.exports = {
     error: error,
     index: index,
     add_user_to_response: add_user_to_response,
-    develop_error_handler: develop_error_handler,
-    production_error_handler: production_error_handler
+    license: license
 };

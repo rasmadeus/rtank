@@ -31,7 +31,6 @@ UserConfirm.methods.isValid = function(code) {
     return bcrypt.compareSync(code, this.code);
 };
 
-
 module.exports = {
     User: mongoose.model('User', User),
     UserConfirm: mongoose.model('UserConfirmCode', UserConfirm)
