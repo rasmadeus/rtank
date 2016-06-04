@@ -17,7 +17,7 @@ function _send_code(req, res, email, code) {
         }
     });
 
-    var text = '<h1>Hello!</h1> You have sent a request for password recovery.<br /> In order to set a new password, please <a href="https://rtank.herokuapp.com/users/code?email=' + email + '?code=' + code + '">go to here</a>.<br /> Please disregard this letter if it is hit by mistake to you.';
+    var text = '<h1>Hello!</h1> You have sent a request for password recovery.<br /> In order to set a new password, please <a href="https://rtank.herokuapp.com/users/code?email=' + email + '&code=' + code + '">go to here</a>.<br /> Please disregard this letter if it is hit by mistake to you.';
 
     var mailOptions = {
         from: 'rtankcry@gmail.com',
