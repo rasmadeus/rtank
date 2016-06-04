@@ -90,8 +90,14 @@ function _code(req, res, user) {
         if (er)
             _show_repair_error(req, res, er);
         else if (userConfirm) {
-            if (userConfirm.isValid(req.query.code))
-                res.redirect('/');
+            if (userConfirm.isValid(req.query.code)){
+                req.logIn(user, function(er){
+                    if (er)
+                        _show_repair_error(req, res, 'User not loginned!');
+                    else
+                        res.redirect('/');
+                });
+            }
             else
                 _show_repair_error(req, res, 'Code is invalid!');
         }

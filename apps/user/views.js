@@ -82,6 +82,7 @@ function try_login(req, email, password, done) {
     });
  };
 
+
 function license(req, res) {
     res.render('license', { title: 'license agreement' });
 }
