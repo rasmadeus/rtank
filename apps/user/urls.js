@@ -15,6 +15,7 @@ function make_router(passport) {
 
     router.get('/repair', repair.repair);
     router.post('/repair', repair.let_user_change_password);
+    router.get('/password_repair', repair.password_repair);
 
     return router;
 }

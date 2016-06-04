@@ -26,7 +26,8 @@
         "bcrypt": "*",
         "express-flash": "*",
         "canvas": "*",
-        "randomstring": "*"
+        "randomstring": "*",
+        "nodemailer": "*"
     },
     "repository": {
         "type": "git",
