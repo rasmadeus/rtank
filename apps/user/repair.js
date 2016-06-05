@@ -44,7 +44,7 @@ function send_code(req, res, email, code) {
     mailer.mailer(req, res, mailOptions, show_common_repair_error, make_success_page_handler(req, res, email));
 }
 
-function save_user_confirm(req, res, user, userConfirm) {
+function save_user_confirm(req, res, user, userConfirm, code) {
     userConfirm.save(function (er){
         if (er)
             show_common_repair_error(req, res);
@@ -62,13 +62,13 @@ function let_user_change_password(req, res, user) {
         }
         else if (userConfirm) {
             userConfirm.code = code;
-            save_user_confirm(req, res, user, userConfirm);
+            save_user_confirm(req, res, user, userConfirm, code);
         }
         else {
             var userConfirm = new UserConfirm();
             userConfirm.user = user;
             userConfirm.code = code;
-            save_user_confrim(req, res, user, userConfirm);
+            save_user_confrim(req, res, user, userConfirm, code);
         }
     });
 }
