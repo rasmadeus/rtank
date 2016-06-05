@@ -92,7 +92,7 @@ function code(req, res, user) {
         if (er || !userConfirm)
             show_code_checking_error(req, res);
         else if (userConfirm)
-            check_user_confirm_code(req, res, userConfirm);
+            check_user_confirm_code(req, res, user, userConfirm);
     });
 }
 
