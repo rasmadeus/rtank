@@ -106,13 +106,6 @@ function code(req, res, user) {
     });
 }
 
-function reset_password(req, res) {
-    if (req.isAuthenticated())
-        res.render('reset_password', { title: 'reset password'});
-    else
-        res.redirect('/');
-}
-
 function try_reset_password(req, res, user) {
     user.password = req.body.password;
     user.save(function (er){
@@ -135,6 +128,12 @@ function repair(req, res) {
     res.render('repair', { title: 'password repair'});
 }
 
+function reset_password(req, res) {
+    if (req.isAuthenticated())
+        res.render('reset_password', { title: 'reset password'});
+    else
+        res.redirect('/');
+}
 
 module.exports = {
     repair: repair,
