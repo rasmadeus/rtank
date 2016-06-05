@@ -57,5 +57,7 @@ module.exports = {
             show_signup_error(req, res, 'Your email is invalid.');
         else
             try_create_user(req, res);
-    }
+    },
+
+    check_password: check_password
 };

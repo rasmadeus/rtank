@@ -1,5 +1,6 @@
 var User = require('./models').User;
 var UserConfirm =  require('./models').UserConfirm;
+var check_password = require('./signup').check_password;
 
 function show_repair_error(req, res, er) {
     req.flash('error', er);
@@ -12,6 +13,15 @@ function show_common_repair_error(req, res) {
 
 function show_code_checking_error(req, res) {
     show_repair_error(req, res, 'Code is invalid. Try repair password again.');
+}
+
+function show_reset_password_error(req, res, er) {
+    req.flash('error', er);
+    reset_password(req, res);
+}
+
+function show_common_reset_password_error(req, res) {
+    show_reset_password_error('Reset password error. Try again, please.');
 }
 
 function make_success_page_handler(req, res, email) {
@@ -79,7 +89,7 @@ function check_user_confirm_code(req, res, user, userConfirm) {
             if (er)
                 show_code_checking_error(req, res);
             else
-                res.redirect('/');
+                res.redirect('/users/reset_password');
         });
     }
     else {
@@ -96,10 +106,38 @@ function code(req, res, user) {
     });
 }
 
+function reset_password(req, res) {
+    if (req.isAuthenticated())
+        res.render('reset_password', { title: 'reset password'});
+    else
+        res.redirect('/');
+}
+
+function try_reset_password(req, res, user) {
+    user.password = req.body.password;
+    user.save(function (er){
+        if (er) {
+            show_common_reset_password_error(req, res);
+        }
+        else {
+            res.render('article', {
+                title: 'password reset',
+                article: {
+                    header: 'Password reset',
+                    content: 'Your password was changed succesfully!'
+                }
+            });
+        }
+    });
+}
+
+function repair(req, res) {
+    res.render('repair', { title: 'password repair'});
+}
+
+
 module.exports = {
-    repair: function(req, res) {
-        res.render('repair', { title: 'password repair'});
-    },
+    repair: repair,
 
     let_user_change_password: function(req, res) {
         User.findOne({'email':  req.body.email}, function(er, user) {
@@ -117,5 +155,24 @@ module.exports = {
             else
                 code(req, res, user);
         });
+    },
+
+    reset_password: reset_password,
+
+    try_reset_password: function(req, res) {
+        if (!req.isAuthenticated()) {
+            show_common_reset_password_error(req, res);
+        }
+        else if (!check_password(req.body.password)) {
+            show_reset_password_error(req, res, 'The password length must have 8 symbols minimum.');
+        }
+        else {
+            User.findOne({'email':  req.user.email}, function(er, user) {
+                if (er || !user)
+                    show_common_reset_password_error(req, res);
+                else
+                    try_reset_password(req, res, user);
+            });
+        }
     }
 };
