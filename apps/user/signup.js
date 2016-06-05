@@ -22,6 +22,10 @@ function create_user(req, res, User) {
     });
 }
 
+function signup(req, res) {
+    res.render('signup', {title: 'registration'});
+}
+
 function show_signup_error(req, res, er) {
     req.flash('error', er);
     signup(req, res);
@@ -31,18 +35,16 @@ function try_create_user(req, res) {
     var User = require('./models').User;
     User.findOne({'email':  req.body.email}, function(er, user) {
         if (er)
-            show_signup_error(req, res, er);
+            show_signup_error(req, res, 'Failed to register user. Try again, please.');
         else if (user)
-            show_signup_error(req, res, 'User "' + req.body.email + '" already exist.');
+            show_signup_error(req, res, 'User "' + req.body.email + '" already exist. If you forgot your password, you can try <a href="/users/repair">reset one.</a>');
         else
             create_user(req, res, User);
     });
 }
 
 module.exports = {
-    signup: function(req, res) {
-        res.render('signup', {title: 'registration'});
-    },
+    signup: signup,
 
     register_user: function(req, res) {
         if (!req.body.license)
