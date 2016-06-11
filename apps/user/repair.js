@@ -128,11 +128,11 @@ function repair(req, res) {
     res.render('repair', { title: 'password repair'});
 }
 
-function reset_password(req, res) {
+function reset_password(req, res, next) {
     if (req.isAuthenticated())
         res.render('reset_password', { title: 'reset password'});
     else
-        res.redirect('/');
+        next();
 }
 
 module.exports = {
