@@ -16,12 +16,10 @@ module.exports = {
     try_login: function(req, email, password, done){
         var User = require('./models').User;
         User.findOne({'email':  email}, function(er, user) {
-            if (er)
-                show_login_error(req, er, done);
-            else if (user.isValid(password))
-                done(null, user);
+            if (er || !user || !user.isValid(password))
+                show_login_error(req, 'Login error. Try again or signup', done);
             else
-                show_login_error(req, 'The password is invalid. Try again.', done);
+                done(null, user);
         });
     }
 };

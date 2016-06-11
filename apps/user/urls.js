@@ -18,8 +18,12 @@ function make_router(passport) {
     router.get('/confirm', repair.code);
 
     router.get('/profile', profile.profile);
+
     router.get('/profile/password', repair.reset_password);
     router.post('/profile/password', repair.try_reset_password);
+
+    router.get('/profile/nickname', profile.nickname);
+    router.post('/profile/nickname', profile.try_change_nickname);
 
     return router;
 }

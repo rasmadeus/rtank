@@ -26,8 +26,8 @@
         <div class="col-md-9">
             <p>
                 <h4>Greeting</h4>
-                Hi dear user. Now you see your profile. Here you can manage your personal data and watch your personal game statistics.
-                For game process and chatting we use first part of your email {{ user.email }} as your nickname. If you want change one
+                Hi dear {{ user.name() }}. Now you see your profile. Here you can manage your personal data and watch your personal game statistics.
+                By default, for game process and chatting we use first part of your email {{ user.email }} as your nickname. If you want change one
                 <a href="/users/profile/nickname">go to form of changing one </a>.
             </p>
             <p>

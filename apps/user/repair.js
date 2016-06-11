@@ -106,9 +106,9 @@ function code(req, res, user) {
     });
 }
 
-function try_reset_password(req, res, user) {
-    user.password = req.body.password;
-    user.save(function (er){
+function try_reset_password(req, res) {
+    req.user.password = req.body.password;
+    req.user.save(function (er){
         if (er) {
             show_common_reset_password_error(req, res);
         }
@@ -159,19 +159,11 @@ module.exports = {
     reset_password: reset_password,
 
     try_reset_password: function(req, res) {
-        if (!req.isAuthenticated()) {
+        if (!req.isAuthenticated())
             show_common_reset_password_error(req, res);
-        }
-        else if (!check_password(req.body.password)) {
+        else if (!check_password(req.body.password))
             show_reset_password_error(req, res, 'The password length must have 8 symbols minimum.');
-        }
-        else {
-            User.findOne({'email':  req.user.email}, function(er, user) {
-                if (er || !user)
-                    show_common_reset_password_error(req, res);
-                else
-                    try_reset_password(req, res, user);
-            });
-        }
+        else
+            try_reset_password(req, res);
     }
 };
