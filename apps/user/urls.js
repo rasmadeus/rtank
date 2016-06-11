@@ -3,9 +3,10 @@ function make_router(passport) {
     var login = require('./login');
     var repair = require('./repair');
     var signup = require('./signup');
+    var profile = require('./profile');
 
     router.get('/login', login.login);
-    router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/', failureFlash : true}));
+    router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', successRedirect: '/users/profile', failureFlash : true}));
 
     router.get('/logout', login.logout);
 
@@ -14,10 +15,11 @@ function make_router(passport) {
 
     router.get('/repair', repair.repair);
     router.post('/repair', repair.let_user_change_password);
-    router.get('/code', repair.code);
+    router.get('/confirm', repair.code);
 
-    router.get('/reset_password', repair.reset_password);
-    router.post('/reset_password', repair.try_reset_password);
+    router.get('/profile', profile.profile);
+    router.get('/profile/password', repair.reset_password);
+    router.post('/profile/password', repair.try_reset_password);
 
     return router;
 }

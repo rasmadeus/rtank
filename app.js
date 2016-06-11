@@ -78,16 +78,13 @@ function setup_captcha(app) {
 
 function setup_routing(app) {
     var users = require('./apps/user/urls');
-    var user_profile = require('./apps/user/profile/urls');
     var root = require('./apps/root/views');
     var passport = make_passport(app);
-
 
     app.use(root.add_user_to_response);
     app.get('/', root.index);
     app.get('/license', root.license);
     app.use('/users', users(passport));
-    app.use('/users/profile', user_profile());
     app.use(root.error);
 }
 

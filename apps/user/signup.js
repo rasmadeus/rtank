@@ -23,7 +23,7 @@ function create_user(req, res, User) {
 }
 
 function signup(req, res) {
-    res.render('signup', {title: 'registration'});
+    res.render('signup', {title: 'registration', form_header: 'Join to our tank command'});
 }
 
 function show_signup_error(req, res, er) {

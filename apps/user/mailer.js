@@ -19,6 +19,6 @@ module.exports = {
     },
 
     link: function(req, email, code) {
-        return 'http://' + req.headers.host +'/users/code?email=' + email + '&code=' + code;
+        return 'http://' + req.headers.host +'/users/confirm?email=' + email + '&code=' + code;
     }
 };

@@ -5,7 +5,7 @@ function show_login_error(req, er, done) {
 
 module.exports = {
     login: function(req, res){
-        res.render('login', { title: 'authentication' });
+        res.render('login', { title: 'authentication', form_header: 'Introduce yourself, please' });
     },
 
     logout: function(req, res){

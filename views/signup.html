@@ -1,54 +1,34 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="row">
-    <div class="col-md-8 user_form_header">
-        <h1>Do you want to take part in our game?</h1>
+{% extends "form.html" %}
+{% block fields %}
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Email:</label>
+        <div class="col-md-8">
+            <input class="form-control-static" id="email" name="email" type="email" placeholder="Email">
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-4 user_form_container">
-        <form class="form-horizontal" method="post">
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="email">Email:</label>
-                <div class="col-md-8">
-                    <input class="form-control-static" id="email" name="email" type="email" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Password:</label>
-                <div class="col-md-8">
-                    <input class="form-control-static" id="password" name="password" type="password" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="password"><img class="captcha" src="/captcha.jpg" /></label>
-                <div class="col-md-8">
-                    <input class="form-control-static" name="captcha" type="text" placeholder="What do you see on the image?">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="license"><a href="/license" target="_blank">Read license</a></label>
-                <div class="checkbox col-md-8">
-                    <label>
-                        <input name="license" id="license" type="checkbox">I agreed with license
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                    <button class="btn btn-default" type="submit">SignUp</button>
-                </div>
-            </div>
-            {% if messages.error %}
-            <div class="form-group">
-                <div class="col-md-12">
-                    <div class="alert alert-warning">
-                        {{ messages.error }}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-        </form>
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="password">Password:</label>
+        <div class="col-md-8">
+            <input class="form-control-static" id="password" name="password" type="password" placeholder="Password">
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="password"><img class="captcha" src="/captcha.jpg" /></label>
+        <div class="col-md-8">
+            <input class="form-control-static" name="captcha" type="text" placeholder="What do you see on the image?">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="license"><a href="/license" target="_blank">Read license</a></label>
+        <div class="checkbox col-md-8">
+            <label>
+                <input name="license" id="license" type="checkbox">I agreed with license
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+            <button class="btn btn-default" type="submit">Signup</button>
+        </div>
+    </div>
 {% endblock %}

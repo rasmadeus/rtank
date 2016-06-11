@@ -89,7 +89,7 @@ function check_user_confirm_code(req, res, user, userConfirm) {
             if (er)
                 show_code_checking_error(req, res);
             else
-                res.redirect('/users/reset_password');
+                res.redirect('/users/profile/password');
         });
     }
     else {
@@ -125,12 +125,12 @@ function try_reset_password(req, res, user) {
 }
 
 function repair(req, res) {
-    res.render('repair', { title: 'password repair'});
+    res.render('repair', { title: 'password repair', form_header: 'Password repair'});
 }
 
 function reset_password(req, res, next) {
     if (req.isAuthenticated())
-        res.render('reset_password', { title: 'reset password'});
+        res.render('password', { title: 'reset password', form_header: 'Reset your password'});
     else
         next();
 }
