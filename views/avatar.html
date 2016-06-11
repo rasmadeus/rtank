@@ -1,0 +1,15 @@
+{% extends "form.html" %}
+{% block fields %}
+    <div class="form-group">
+        <div class="col-md-12">
+            <label class="btn btn-default fill_parent_width">
+                Load image<input class="avatar_button" type="file" id="file" name="file" accept="image/*" />
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <button class="btn btn-default" type="submit">Change my avatar</button>
+        </div>
+    </div>
+{% endblock %}

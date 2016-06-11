@@ -33,6 +33,13 @@ function change_nickname(req, res, next) {
     }
 }
 
+function avatar(req, res, next) {
+    if (req.isAuthenticated())
+        res.render('avatar', {title: 'user avatar', form_header: 'Load your avatar'});
+    else
+        next();
+}
+
 module.exports = {
     profile: profile,
 
@@ -43,5 +50,7 @@ module.exports = {
             change_nickname(req, res, next);
         else
             next();
-    }
+    },
+
+    avatar: avatar
 };
