@@ -6,7 +6,7 @@ body {
     border: 1px solid black;
 }
 
-.user_form_container, .user_form_header, .centered_block {
+.user_form_container, .user_form_header {
     margin: 0 auto;
     float: none;
 }
@@ -24,16 +24,8 @@ body {
     width: 100%;
 }
 
-.user_form_group {
-    text-align: right;
-}
-
 .article_content {
     padding: 40px 15px;
-    text-align: center;
-}
-
-.captcha_container {
     text-align: center;
 }
 

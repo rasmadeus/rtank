@@ -9,13 +9,7 @@ function get_error(req, res) {
 }
 
 function get_index(req, res) {
-    res.render('article', {
-        title: 'main page',
-        article: {
-            header: 'RTank project',
-            content: 'The project is developing! Come to see us some later!'
-        }
-    });
+    res.render('index', {title: 'main page'});
 }
 
 function add_user_to_response(req, res, next) {

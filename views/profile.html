@@ -1,39 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="page-header">
-  <h1>
-      Tankist profile
-      <small>
-          personal data, statistics
-      </small>
-  </h1>
+    <h1>
+        Tankist profile
+        <small>personal data, statistics</small>
+    </h1>
 </div>
 <div class="row">
-        <div class="col-md-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <img class="img-circle center-block avatar" src="{{ user.avatar }}" alt="user logo">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 btn-group-vertical profile_menu" role="group">
-                    <a href="/users/profile/password" class="btn btn-default" role="button">Change password</a>
-                    <a href="/users/profile/avatar" class="btn btn-default" role="button">Change avatar</a>
-                    <a href="/users/profile/nickname" class="btn btn-default" role="button">Change nickname</a>
-                </div>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <img class="img-circle center-block avatar" src="{{ user.avatar }}" alt="user logo">
             </div>
         </div>
-        <div class="col-md-9">
-            <p>
-                <h4>Greeting</h4>
-                Hi dear {{ user.name() }}. Now you see your profile. Here you can manage your personal data and watch your personal game statistics.
-                By default, for game process and chatting we use first part of your email {{ user.email }} as your nickname. If you want change one
-                <a href="/users/profile/nickname">go to form of changing one </a>.
-            </p>
-            <p>
-                <h4>Statistics</h4>
-                You have joined to our resource at {{ user.registration_date_time }}.
-            </p>
+        <div class="row">
+            <div class="col-md-12 btn-group-vertical profile_menu" role="group">
+                <a href="/users/profile/password" class="btn btn-default" role="button">Change password</a>
+                <a href="/users/profile/avatar" class="btn btn-default" role="button">Change avatar</a>
+                <a href="/users/profile/nickname" class="btn btn-default" role="button">Change nickname</a>
+            </div>
         </div>
+    </div>
+    <div class="col-md-9">
+        <p>
+            <h4>Greeting</h4>
+            Hi dear {{ user.name() }}. Now you see your profile. Here you can manage your personal data and watch your personal game statistics.
+            By default, for game process and chatting we use first part of your email {{ user.email }} as your nickname. If you want change one
+            <a href="/users/profile/nickname">go to form of changing one </a>.
+        </p>
+        <p>
+            <h4>Statistics</h4>
+            You have joined to our resource at {{ user.registration_date_time }}.
+        </p>
+    </div>
 </div>
 {% endblock %}
