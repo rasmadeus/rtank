@@ -14,7 +14,7 @@ function create_user(req, res, User) {
     user.save(function (er){
         if (er) {
             req.flash('error', er);
-            signup(req, res);
+            get_signup(req, res);
         }
         else {
             res.redirect('/users/login');
@@ -22,13 +22,13 @@ function create_user(req, res, User) {
     });
 }
 
-function signup(req, res) {
+function get_signup(req, res) {
     res.render('signup', {title: 'registration', form_header: 'Join to our tank command'});
 }
 
 function show_signup_error(req, res, er) {
     req.flash('error', er);
-    signup(req, res);
+    get_signup(req, res);
 }
 
 function try_create_user(req, res) {
@@ -43,21 +43,21 @@ function try_create_user(req, res) {
     });
 }
 
+function post_signup(req, res) {
+    if (!req.body.license)
+        show_signup_error(req, res, 'You have to agree with license.');
+    else if (req.body.captcha !== req.session.captcha)
+        show_signup_error(req, res, 'You have to enter valid digits from the captcha.');
+    else if (!check_password(req.body.password))
+        show_signup_error(req, res, 'The password length must be minimum 8 symbols.');
+    else if (!check_email(req.body.email))
+        show_signup_error(req, res, 'Your email is invalid.');
+    else
+        try_create_user(req, res);
+}
+
 module.exports = {
-    signup: signup,
-
-    register_user: function(req, res) {
-        if (!req.body.license)
-            show_signup_error(req, res, 'You have to agree with license.');
-        else if (req.body.captcha !== req.session.captcha)
-            show_signup_error(req, res, 'You have to enter valid digits from the captcha.');
-        else if (!check_password(req.body.password))
-            show_signup_error(req, res, 'The password length must be minimum 8 symbols.');
-        else if (!check_email(req.body.email))
-            show_signup_error(req, res, 'Your email is invalid.');
-        else
-            try_create_user(req, res);
-    },
-
+    get_signup: get_signup,
+    post_signup: post_signup,
     check_password: check_password
 };

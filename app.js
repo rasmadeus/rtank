@@ -83,10 +83,10 @@ function setup_routing(app) {
 
 
     app.use(root.add_user_to_response);
-    app.get('/', root.index);
-    app.get('/license', root.license);
+    app.get('/', root.get_index);
+    app.get('/license', root.get_license);
     app.use('/users', users(passport));
-    app.use(root.error);
+    app.use(root.get_error);
 }
 
 function make_application() {

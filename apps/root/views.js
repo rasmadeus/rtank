@@ -1,4 +1,4 @@
-function error(req, res) {
+function get_error(req, res) {
     res.render('article', {
         title: 'page not found',
         article: {
@@ -8,7 +8,7 @@ function error(req, res) {
     });
 }
 
-function index(req, res) {
+function get_index(req, res) {
     res.render('article', {
         title: 'main page',
         article: {
@@ -23,13 +23,13 @@ function add_user_to_response(req, res, next) {
     next();
 }
 
-function license(req, res) {
+function get_license(req, res) {
     res.render('license', { title: 'license agreement' });
 }
 
 module.exports = {
-    error: error,
-    index: index,
+    get_error: get_error,
+    get_index: get_index,
     add_user_to_response: add_user_to_response,
-    license: license
+    get_license: get_license
 };
