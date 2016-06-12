@@ -41,14 +41,23 @@ function avatar(req, res, next) {
 }
 
 function show_avatar_error(req, res, next) {
-    req.flash('error', 'Your avatar connot be load. Try again, please.');
+    req.flash('error', 'Your avatar connot be load. Maybe the image is too big. Try again, please.');
     avatar(req, res, next);
 }
 
 function save_avatar(req, res, next) {
     var multer = require('multer');
-    multer({dest: './public/img/users'}).single('avatar')(req, res, function(er){
-        if (er) {
+    var multer_options = {
+        dest: './public/img/users',
+        limits: {
+            fieldNameSize: 100,
+            fileSize: 1024 * 1024,
+            files: 1,
+            fields: 1
+        }
+    };
+    multer(multer_options).single('avatar')(req, res, function(er){
+        if (er || !req.file) {
             show_avatar_error(req, res, next);
         }
         else {
