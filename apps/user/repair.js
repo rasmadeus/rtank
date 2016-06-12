@@ -78,7 +78,7 @@ function let_user_change_password(req, res, user) {
             var userConfirm = new UserConfirm();
             userConfirm.user = user;
             userConfirm.code = code;
-            save_user_confrim(req, res, user, userConfirm, code);
+            save_user_confirm(req, res, user, userConfirm, code);
         }
     });
 }

@@ -26,6 +26,7 @@ function make_router(passport) {
     router.post('/profile/nickname', profile.try_change_nickname);
 
     router.get('/profile/avatar', profile.avatar);
+    router.post('/profile/avatar', profile.post_avatar);
 
     return router;
 }

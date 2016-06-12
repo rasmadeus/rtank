@@ -48,3 +48,8 @@ body {
 .fill_parent_width {
     width: 100%;
 }
+
+.avatar {
+    width: 200px;
+    height: 200px;
+}

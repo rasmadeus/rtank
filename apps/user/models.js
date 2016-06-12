@@ -7,7 +7,8 @@ var User = new Model({
     password: {type: String, required: true},
     registration_date_time: {type: Date, default: Date.now()},
     group: {type: String, enum: ['Admin', 'User'], default: 'User'},
-    nickname: {type: String}
+    nickname: {type: String},
+    avatar: {type: String, default: '/img/helmet.png'}
 });
 
 User.path('password').set(function(value) {

@@ -42,7 +42,7 @@ function setup_static_paths(app, express) {
 function setup_session(app) {
     var bodyParser = require('body-parser');
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded());
+    app.use(bodyParser.urlencoded({ extended: true }));
 
     var cookieParser = require('cookie-parser');
     app.use(cookieParser());
@@ -80,6 +80,7 @@ function setup_routing(app) {
     var users = require('./apps/user/urls');
     var root = require('./apps/root/views');
     var passport = make_passport(app);
+
 
     app.use(root.add_user_to_response);
     app.get('/', root.index);

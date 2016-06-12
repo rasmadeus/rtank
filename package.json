@@ -27,7 +27,8 @@
         "express-flash": "*",
         "canvas": "*",
         "randomstring": "*",
-        "nodemailer": "*"
+        "nodemailer": "*",
+        "multer": "*"
     },
     "repository": {
         "type": "git",

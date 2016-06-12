@@ -40,6 +40,39 @@ function avatar(req, res, next) {
         next();
 }
 
+function show_avatar_error(req, res, next) {
+    req.flash('error', 'Your avatar connot be load. Try again, please.');
+    avatar(req, res, next);
+}
+
+function save_avatar(req, res, next) {
+    var multer = require('multer');
+    multer({dest: './public/img/users'}).single('avatar')(req, res, function(er){
+        if (er) {
+            show_avatar_error(req, res, next);
+        }
+        else {
+            req.user.avatar = '/img/users/' + req.file.filename;
+            req.user.save(function(er){
+                if (er) {
+                    req.flash('error', er);
+                    avatar(req, res, next);
+                }
+                else {
+                    profile(req, res, next);
+                }
+            });
+        }
+    });
+}
+
+function post_avatar(req, res, next) {
+    if (req.isAuthenticated())
+        save_avatar(req, res, next);
+    else
+        next();
+}
+
 module.exports = {
     profile: profile,
 
@@ -52,5 +85,6 @@ module.exports = {
             next();
     },
 
-    avatar: avatar
+    avatar: avatar,
+    post_avatar: post_avatar
 };
