@@ -9,7 +9,7 @@ function get_error(req, res) {
 }
 
 function get_index(req, res) {
-    res.render('index', {title: 'main page'});
+    res.render(req.isAuthenticated() ? 'user' : 'guest', {title: 'main page'});
 }
 
 function add_user_to_response(req, res, next) {
