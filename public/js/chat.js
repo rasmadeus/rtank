@@ -24,7 +24,7 @@ function make_avatar(user) {
 }
 
 function make_header(message) {
-    return message.user.name + ', ' + message.time;
+    return message.user.name + ', ' + new Date().toLocaleTimeString();
 }
 
 function make_message(message) {
@@ -40,22 +40,21 @@ function clear_messages(messages) {
         messages.removeChild(messages.childNodes[0]);
 }
 
-function add_message(message) {
-    var messages = document.getElementById('messages');
-    clear_messages(messages);
-    messages.appendChild(make_message(message));
-}
+function Chat(user) {
+    var user = user;
+    var socket = io();
 
-function Chat() {
-    this.socket = io();
-
-    this.socket.on('connect', function(){
-         socket.emit('connect1', {user: '{{user.name()}}' });
+    socket.on('connect', function(){
+        socket.emit('user_connected', {user: user});
     });
 
-    this.socket.on('message', add_message);
-}
+    socket.on('message', function(message) {
+        var messages = document.getElementById('messages');
+        clear_messages(messages);
+        messages.appendChild(make_message(message));
+    });
 
-Chat.prototype.send = function(user, text) {
-    this.socket.emit('message1', {user: user, text: text});
-};
+    this.send = function(text) {
+        socket.emit('user_send_message', {user: user, text: text});
+    };
+}

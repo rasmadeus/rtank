@@ -109,15 +109,12 @@ function make_application() {
     var io = require('socket.io')(server);
 
     io.on('connection', function (socket) {
-        console.log('connection');
-        socket.on('connect1', function (data) {
-            socket.broadcast.emit('message', {text: data.user + ' join us'});
-            console.log('server client connect');
+        socket.on('user_connected', function (data) {
+            socket.broadcast.emit('message', {text: 'Tankist ' + data.user.name + ' joined us', user: data.user});
         });
 
-        socket.on('message1', function(message) {
-            socket.broadcast.emit('message', {text: message.text, time: Date.now(), user: message.user});
-            console.log('server client message');
+        socket.on('user_send_message', function(message) {
+            io.emit('message', {text: message.text, user: message.user});
         });
     });
 

@@ -7,9 +7,7 @@
             var key = ev.which || ev.keyCode;
             var enterCode = 13;
             if (key === enterCode) {
-                var user = {name: '{{ user.name() }}', avatar: '{{ user.avatar }}'};
-                var text = data.value;
-                document.getElementById('chat').contentWindow.sendMessage(user, text);
+                document.getElementById('chat').contentWindow.chat.send(data.value);
                 data.value = "";
             }
         });
