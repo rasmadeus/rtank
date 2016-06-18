@@ -20,7 +20,7 @@ body {
     margin-top: 10px;
 }
 
-.user_form_container button, input[type="email"], input[type="password"], input[type="text"]{
+.user_form_container button, input[type="email"], input[type="password"], input[type="text"], input[type="button"]{
     width: 100%;
 }
 
@@ -44,4 +44,45 @@ body {
 .avatar {
     width: 200px;
     height: 200px;
+}
+
+.media-left img {
+    width: 30px;
+    height: 30px;
+}
+
+.media-body h4 {
+    font-size: 1.0em;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+
+.chat_frame {
+    width: 100%;
+    border: 0px;
+    height: 350px;
+}
+
+.chat_body {
+    padding: 5px;
+    margin: 0px;
+    background-color: rgb(90%, 90%, 90%);
+}
+
+.chat_message_container {
+    padding: 0px;
+}
+
+.chat_message {
+    background-color: rgb(99%, 99%, 99%);
+    padding: 5px;
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.chat_message:last-child {
+    margin-bottom: 0px;
 }

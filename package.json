@@ -28,7 +28,8 @@
         "canvas": "latest",
         "randomstring": "latest",
         "nodemailer": "latest",
-        "multer": "latest"
+        "multer": "latest",
+        "socket.io": "latest"
     },
     "repository": {
         "type": "git",

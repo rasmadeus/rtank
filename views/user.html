@@ -1,4 +1,21 @@
 {% extends "base.html" %}
+{% block head %}
+<script>
+    window.addEventListener('load', function(){
+        var data = document.getElementById('chat_message');
+        data.addEventListener('keypress', function(ev){
+            var key = ev.which || ev.keyCode;
+            var enterCode = 13;
+            if (key === enterCode) {
+                var user = {name: '{{ user.name() }}', avatar: '{{ user.avatar }}'};
+                var text = data.value;
+                document.getElementById('chat').contentWindow.sendMessage(user, text);
+                data.value = "";
+            }
+        });
+    });
+</script>
+{% endblock %}
 {% block content %}
 <div class="page-header">
   <h1>
@@ -7,12 +24,17 @@
   </h1>
 </div>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-8">
     </div>
-    <div class="col-md-6">
-    </div>
-    <div class="col-md-3 bb">
-        ASD
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12" id="output">
+                <iframe src="/chat" class="chat_frame" id="chat"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 user_form_container"><input class="form-control-static" type="text" id="chat_message" placeholder="Input text and press Enter"></div>
+        </div>
     </div>
 </div>
 {% endblock %}

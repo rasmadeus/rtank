@@ -36,6 +36,7 @@ function setup_static_paths(app, express) {
     app.use(express.static(path.join(__dirname, 'public')));
     app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
     app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+    app.use('/js', express.static(path.join(__dirname, '/node_modules/socket.io-client')));
     app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 }
 
@@ -86,6 +87,7 @@ function setup_routing(app) {
     app.get('/', root.get_index);
     app.get('/license', root.get_license);
     app.use('/users', users(passport));
+    app.get('/chat', root.get_chat);
     app.use(root.get_error);
 }
 
@@ -103,7 +105,23 @@ function make_application() {
     setup_flash(app);
     setup_routing(app);
 
-    return app;
+    var server = require('http').Server(app);
+    var io = require('socket.io')(server);
+
+    io.on('connection', function (socket) {
+        console.log('connection');
+        socket.on('connect1', function (data) {
+            socket.broadcast.emit('message', {text: data.user + ' join us'});
+            console.log('server client connect');
+        });
+
+        socket.on('message1', function(message) {
+            socket.broadcast.emit('message', {text: message.text, time: Date.now(), user: message.user});
+            console.log('server client message');
+        });
+    });
+
+    return server;
 }
 
 

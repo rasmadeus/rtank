@@ -21,9 +21,18 @@ function get_license(req, res) {
     res.render('license', { title: 'license agreement' });
 }
 
+function get_chat(req, res, next) {
+    if (req.isAuthenticated())
+        res.render('chat', {title: 'chat room'});
+    else
+        next();
+}
+
 module.exports = {
     get_error: get_error,
     get_index: get_index,
     add_user_to_response: add_user_to_response,
-    get_license: get_license
+    get_license: get_license,
+    get_chat: get_chat
+
 };

@@ -1,9 +1,7 @@
 #!/usr/bin/nodejs
 var debug = require('debug')('rtank');
-var app = require('../app');
+var server = require('../app');
 
-app.set('port', process.env.PORT || 3000);
-
-var server = app.listen(app.get('port'), function() {
+server.listen(process.env.PORT || 3000, function() {
     debug('Express server listening on port ' + server.address().port);
 });
