@@ -52,6 +52,7 @@ function Chat(user) {
         var messages = document.getElementById('messages');
         clear_messages(messages);
         messages.appendChild(make_message(message));
+        window.scrollTo(0, document.body.scrollHeight);
     });
 
     this.send = function(text) {
