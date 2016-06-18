@@ -75,7 +75,7 @@ body {
 }
 
 .chat_message {
-    background-color: rgb(99%, 99%, 99%);
+    background-color: rgb(100%, 100%, 100%);
     padding: 5px;
     width: 100%;
     margin: 0px;
@@ -85,4 +85,10 @@ body {
 
 .chat_message:last-child {
     margin-bottom: 0px;
+}
+
+.common_chat_room {
+    background-color: rgb(85%, 85%, 85%);
+    padding: 5px;
+    border-radius: 5px;
 }

@@ -13,7 +13,7 @@
         });
     });
 </script>
-{% endblock %}
+{% endblock %}git
 {% block content %}
 <div class="page-header">
   <h1>
@@ -24,14 +24,21 @@
 <div class="row">
     <div class="col-md-8">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 common_chat_room">
+        <div class="row">
+            <div class="col-md-12 user_form_container centered_text">
+                <h4>Common chat</h4>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12" id="output">
                 <iframe src="/chat" class="chat_frame" id="chat"></iframe>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 user_form_container"><input class="form-control-static" type="text" id="chat_message" placeholder="Input text and press Enter"></div>
+            <div class="col-md-12 user_form_container">
+                <input class="form-control-static" type="text" id="chat_message" placeholder="Input text and press Enter">
+            </div>
         </div>
     </div>
 </div>
