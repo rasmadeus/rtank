@@ -29,7 +29,8 @@
         "randomstring": "latest",
         "nodemailer": "latest",
         "multer": "latest",
-        "socket.io": "latest"
+        "socket.io": "latest",
+        "html-minifier": "latest"
     },
     "repository": {
         "type": "git",

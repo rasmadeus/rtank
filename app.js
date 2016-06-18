@@ -23,6 +23,9 @@ function setup_view(app) {
         },
         app
     );
+
+    var minifier = require('./apps/root/minifier');
+    app.use(minifier);
 }
 
 function setup_static_paths(app, express) {
