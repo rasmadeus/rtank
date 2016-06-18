@@ -37,6 +37,7 @@ function setup_static_paths(app, express) {
     app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
     app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
     app.use('/js', express.static(path.join(__dirname, '/node_modules/socket.io-client')));
+    app.use('/js', express.static(path.join(__dirname, '/apps/chat')));
     app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 }
 
@@ -77,6 +78,11 @@ function setup_captcha(app) {
     app.use(captcha(params));
 }
 
+function setup_chat(httpServer) {
+    var chat = require('./apps/chat/chat_server');
+    chat(httpServer);
+}
+
 function setup_routing(app) {
     var users = require('./apps/user/urls');
     var root = require('./apps/root/views');
@@ -91,7 +97,7 @@ function setup_routing(app) {
     app.use(root.get_error);
 }
 
-function make_application() {
+function make_http_server() {
     connect_to_db();
 
     var express = require('express');
@@ -105,21 +111,11 @@ function make_application() {
     setup_flash(app);
     setup_routing(app);
 
-    var server = require('http').Server(app);
-    var io = require('socket.io')(server);
+    var httpServer = require('http').Server(app);
+    setup_chat(httpServer);
 
-    io.on('connection', function (socket) {
-        socket.on('user_connected', function (data) {
-            socket.broadcast.emit('message', {text: 'Tankist ' + data.user.name + ' joined us', user: data.user});
-        });
-
-        socket.on('user_send_message', function(message) {
-            io.emit('message', {text: message.text, user: message.user});
-        });
-    });
-
-    return server;
+    return httpServer;
 }
 
 
-module.exports = make_application();
+module.exports = make_http_server();
