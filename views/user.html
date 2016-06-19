@@ -23,21 +23,32 @@
 </div>
 <div class="row">
     <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12 tanks_area_container">
+                <canvas id="tanks_area" width="300" height="300">
+                    Unfortunately your browser doesn't support this game.
+                </canvas>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 common_chat_room">
+    <div class="col-md-4">
         <div class="row">
-            <div class="col-md-12 user_form_container centered_text">
-                <h4>Common chat</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12" id="output">
-                <iframe src="/chat" class="chat_frame" id="chat"></iframe>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 user_form_container">
-                <input class="form-control-static" type="text" id="chat_message" placeholder="Input text and press Enter">
+            <div class="col-md-12 common_chat_room">
+                <div class="row">
+                    <div class="col-md-12 user_form_container centered_text">
+                        <h4>Common chat</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="output">
+                        <iframe src="/chat" class="chat_frame" id="chat"></iframe>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 user_form_container">
+                        <input class="form-control-static" type="text" id="chat_message" placeholder="Input text and press Enter">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

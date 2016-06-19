@@ -91,8 +91,20 @@ body {
     background-color: rgb(15%, 15%, 15%);
     padding: 5px;
     border-radius: 5px;
+    margin: 5px;
 }
 
 .common_chat_room h4 {
     color: rgb(100%, 100%, 100%);
+}
+
+.tanks_area_container {
+    text-align: center;
+    padding: 5px;
+}
+
+#tanks_area {
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
 }
